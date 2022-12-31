@@ -68,6 +68,7 @@ module.exports = {
     ignorePropertyModificationsFor: ['state'],
    },
   ],
+  'no-use-before-define': ['error', { functions: false }],
  },
  settings: {
   react: {
