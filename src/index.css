@@ -8,8 +8,15 @@ html {
 
 body {
  min-height: 100%;
+ background-color: #e9ecf1;
 }
 
 #root {
  height: 100%;
+}
+
+li > a:hover > svg {
+ stroke: white;
+ stroke-width: 2;
+ transition: all ease 0.3s;
 }
