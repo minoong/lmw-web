@@ -24,10 +24,10 @@ function useAuth() {
    })
  }, [])
 
- const signOut = useCallback(async () => {
+ const signOut = useCallback(() => {
   setIsPending(() => true)
   setAuth(RESET)
-  await firebaseAuth.signOut()
+  firebaseAuth.signOut()
   setIsPending(() => false)
  }, [])
 

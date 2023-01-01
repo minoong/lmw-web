@@ -1,10 +1,15 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback } from 'react'
 import { NavLink, useMatches } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ReactComponent as Chart } from '~/assets/svg/chart.svg'
 import { ReactComponent as Balance } from '~/assets/svg/balance.svg'
 import { ReactComponent as Wallet } from '~/assets/svg/wallet.svg'
 import { ReactComponent as Notice } from '~/assets/svg/notice.svg'
+import { ReactComponent as SignIn } from '~/assets/svg/signin.svg'
+import { ReactComponent as SignOut } from '~/assets/svg/signout.svg'
+import { ReactComponent as User } from '~/assets/svg/user.svg'
+import useAuth from '~/hooks/useAuth'
+import Spinner from '~/components/ui/Common/Spinner/spinner'
 
 const LINKS: { path: string; name: string; icon: ReactElement }[] = [
  {
@@ -31,6 +36,7 @@ const LINKS: { path: string; name: string; icon: ReactElement }[] = [
 
 function Gnb() {
  const matches = useMatches().at(-1)
+ const { auth, signIn, signOut, isPending } = useAuth()
 
  return (
   <header className="bg-[#093687]/80 backdrop-blur-sm fixed w-full select-none">
@@ -69,7 +75,25 @@ function Gnb() {
       ))}
      </ul>
     </section>
-    <section>로그인</section>
+    <section>
+     {isPending ? (
+      <Spinner />
+     ) : auth ? (
+      <div className="flex items-center justify-center gap-1">
+       <button type="button" onClick={signOut} className="hover:scale-110 transition-all">
+        {React.createElement(SignOut, { fill: '#FFFFFF', width: 20, strokeWidth: 2, stroke: '#FFFFFF' })}
+       </button>
+       <span className="border-l-2 border-slate-900/50 h-[20px]" />
+       <NavLink to="/mypage" className="hover:scale-110 transition-all">
+        <User width={20} fill="#FFFFFF" />
+       </NavLink>
+      </div>
+     ) : (
+      <button type="button" onClick={signIn} className="hover:scale-110 transition-all">
+       {React.createElement(SignIn, { fill: '#FFFFFF', width: 20, strokeWidth: 2, stroke: '#FFFFFF' })}
+      </button>
+     )}
+    </section>
    </nav>
   </header>
  )
