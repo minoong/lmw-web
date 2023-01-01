@@ -9,6 +9,12 @@ function Router() {
     {
      path: '/',
      element: <Layout />,
+     children: [
+      {
+       path: '/exchange',
+       element: <div>dsf</div>,
+      },
+     ],
     },
    ])}
   />
