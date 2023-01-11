@@ -1,3 +1,5 @@
+import type { Change } from '~/types/api/upbit/common'
+
 export type Trade = {
  type: string
  code: string
@@ -5,7 +7,7 @@ export type Trade = {
  trade_volume: string
  ask_bid: 'ASK' | 'BID'
  prev_closing_price: string
- change: 'RISE' | 'EVEN' | 'FALL'
+ change: Change
  change_price: string
  trade_date: string
  trade_time: string

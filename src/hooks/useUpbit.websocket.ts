@@ -1,9 +1,9 @@
 import { cloneDeep, throttle } from 'lodash'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Market } from '~/types/api/upbit/market'
-import { Ticker } from '~/types/api/upbit/ticker.socket'
-import { Orderbook } from '~/types/api/upbit/orderbook.socket'
-import { Trade } from '~/types/api/upbit/trade.socket'
+import type { Market } from '~/types/api/upbit/market'
+import type { Ticker } from '~/types/api/upbit/ticker.socket'
+import type { Orderbook } from '~/types/api/upbit/orderbook.socket'
+import type { Trade } from '~/types/api/upbit/trade.socket'
 
 type RequestType = 'ticker' | 'orderbook' | 'trade'
 
