@@ -69,6 +69,7 @@ module.exports = {
    },
   ],
   'no-use-before-define': ['error', { functions: false }],
+  '@typescript-eslint/consistent-type-imports': 'warn',
  },
  settings: {
   react: {

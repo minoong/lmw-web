@@ -1,4 +1,5 @@
-import React, { ReactElement, useCallback } from 'react'
+import type { ReactElement } from 'react'
+import React from 'react'
 import { NavLink, useMatches } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ReactComponent as Chart } from '~/assets/svg/chart.svg'
@@ -39,7 +40,7 @@ function Gnb() {
  const { auth, signIn, signOut, isPending } = useAuth()
 
  return (
-  <header className="bg-[#093687]/80 backdrop-blur-sm fixed w-full select-none">
+  <header className="bg-[#093687]/80 backdrop-blur-sm fixed w-full select-none z-50">
    <nav className="flex items-center justify-between max-w-[1400px] min-w-[1200px] m-auto p-4">
     <section className="flex items-center">
      <NavLink

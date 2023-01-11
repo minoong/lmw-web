@@ -1,7 +1,7 @@
 import { atom } from 'jotai'
 import { selectAtom } from 'jotai/utils'
 import deepEquals from 'fast-deep-equal'
-import { Market } from '~/types/api/upbit/market'
+import type { Market } from '~/types/api/upbit/market'
 
 export const marketsAtom = atom<Market[]>([])
 
