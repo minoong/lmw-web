@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import usePrevious from '~/hooks/usePrevious'
 import type { Change } from '~/types/api/upbit/common'
+import { MarketUtils } from '~/utils/utils.market'
 
 interface Props {
  tradePrice: number
@@ -43,7 +44,7 @@ function Price(props: Props) {
     !isFirstRender ? highlight : ''
    } text-xs h-10 flex justify-end pr-2 pt-1`}
   >
-   {tradePrice.toLocaleString()}
+   {MarketUtils.getPricePretty(tradePrice)}
   </div>
  )
 }

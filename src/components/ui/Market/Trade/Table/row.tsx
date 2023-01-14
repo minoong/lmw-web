@@ -2,7 +2,7 @@
 import clsx from 'clsx'
 import type { Atom } from 'jotai'
 import React, { useMemo } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate, useNavigation } from 'react-router-dom'
 import { ReactComponent as Star } from '~/assets/svg/star_fill.svg'
 import Candle from '~/components/ui/Chart/candle'
 import Price from '~/components/ui/Market/Trade/Table/price'
@@ -26,6 +26,8 @@ function Row(props: ExtractAtomValue<typeof tickersAboutMarketsAtom>) {
   acc_trade_price_24h,
  } = props
  const previousChange = usePrevious(trade_price)
+ const navigation = useNavigation()
+ const navigate = useNavigate()
 
  const marketKrwSymbol = useMemo(() => {
   const [krw, symbol] = market.split('-')
@@ -38,8 +40,24 @@ function Row(props: ExtractAtomValue<typeof tickersAboutMarketsAtom>) {
   'text-[#1261c4]': change === 'FALL',
  })
 
+ const isPending = () => {
+  return navigation.state === 'loading'
+ }
+
+ const handleSelectedMarket = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, market: string) => {
+  e.stopPropagation()
+  if (isPending()) {
+   return
+  }
+  navigate(`/exchange/${market}`)
+ }
+
  return (
-  <div className="flex w-[400px] max-w-[400px] bg-white flex-wrap h-[46px] items-center cursor-default text-[#333333] text-xs hover:bg-[#f4f5f8]">
+  <div
+   className="flex w-[400px] max-w-[400px] bg-white flex-wrap h-[46px] items-center cursor-default text-[#333333] text-xs hover:bg-[#f4f5f8]"
+   onClick={(e) => handleSelectedMarket(e, market)}
+   aria-hidden
+  >
    <div className="w-[26px] flex justify-center pl-3">
     <Star fill="#DDDDDD" width={15} />
    </div>
@@ -59,7 +77,11 @@ function Row(props: ExtractAtomValue<typeof tickersAboutMarketsAtom>) {
     </svg>
    </div>
    <div className="w-[94px]">
-    <NavLink className="text-xs font-bold !cursor-pointer hover:underline" to="/exchange/KRW-BTC">
+    <NavLink
+     className="text-xs font-bold !cursor-pointer hover:underline"
+     to={`/exchange/${market}`}
+     onClick={isPending}
+    >
      {korean_name}
     </NavLink>
     <div className="text-[6px] text-gray-500 font-semibold">{marketKrwSymbol}</div>
@@ -78,7 +100,7 @@ function Row(props: ExtractAtomValue<typeof tickersAboutMarketsAtom>) {
       {signed_change_rate > 0 ? '+' : ''}
       {(signed_change_rate * 100).toFixed(2)}%
      </div>
-     <div>{signed_change_price.toLocaleString()}</div>
+     <div>{MarketUtils.getPricePretty(signed_change_price)}</div>
     </div>
    </div>
    <div className="w-[88px]">

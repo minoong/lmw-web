@@ -39,3 +39,6 @@ export const tickersAboutMarketsAtom = atom((get) => {
    }),
   )
 })
+
+export const getTickerBySymbolAtom = (symbol: string) =>
+ atom((get) => get(tickersAtom).filter(({ code }) => code === symbol)[0])

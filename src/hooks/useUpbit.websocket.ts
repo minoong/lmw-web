@@ -107,19 +107,21 @@ function useUpbit<T extends RequestType>(marketCodes: Market[], type: T) {
     throttled()
    }
 
-   socket.current.onclose = () => {
-    setIsConnected(false)
-    setLoadingBuffer([])
-    setSocketData([])
-    buffer.current = []
-   }
+   //  socket.current.onclose = () => {
+   //   console.log('closecloseclosecloseclosecloseclosecloseclosecloseclosecloseclosecloseclosecloseclosev')
+   //   console.log('close', marketCodes[0].market)
+   //   setIsConnected(false)
+   //   setLoadingBuffer([])
+   //   setSocketData([])
+   //   buffer.current = []
+   //  }
 
    socket.current.onerror = () => {
     socket.current?.close()
 
     setTimeout(() => {
      connect()
-    }, 1000)
+    }, 400)
    }
   }
 
@@ -129,6 +131,10 @@ function useUpbit<T extends RequestType>(marketCodes: Market[], type: T) {
    if (socket.current && socket.current.readyState !== 0) {
     socket.current.close()
     socket.current = null
+    setIsConnected(false)
+    setLoadingBuffer([])
+    setSocketData([])
+    buffer.current = []
    }
   }
  }, [marketCodes])
