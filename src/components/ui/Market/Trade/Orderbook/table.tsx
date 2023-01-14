@@ -48,6 +48,8 @@ function Test(props: TestProps) {
   }, [symbol]),
  )
 
+ if (!data) return null
+
  const maxSize = Math.max(
   ...data.orderbook_units.map((v) => v.ask_size),
   ...data.orderbook_units.map((v) => v.bid_size),
