@@ -66,9 +66,9 @@ function Gnb() {
          }
         >
          {React.cloneElement(link.icon, {
-          ...(link.path === matches?.pathname && { strokeWidth: 2 }),
-          stroke: link.path === matches?.pathname ? '#FFFFFF' : '#687EB0',
-          fill: link.path === matches?.pathname ? '#FFFFFF' : '#687EB0',
+          ...(matches?.pathname.startsWith(link.path) && { strokeWidth: 2 }),
+          stroke: matches?.pathname.startsWith(link.path) ? '#FFFFFF' : '#687EB0',
+          fill: matches?.pathname.startsWith(link.path) ? '#FFFFFF' : '#687EB0',
          })}
          {link.name}
         </NavLink>

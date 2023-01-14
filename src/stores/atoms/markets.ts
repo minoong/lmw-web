@@ -22,3 +22,6 @@ export const usdtMarketsAtom = selectAtom(
  (markets) => markets.filter(({ market }) => market.startsWith('USDT-')),
  deepEquals,
 )
+
+export const getMarketBySymbolAtom = (symbol: string) =>
+ atom((get) => get(marketsAtom).filter(({ market }) => market === symbol))

@@ -1,5 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai'
 import React, { useEffect } from 'react'
+import Orderbook from '~/components/ui/Market/Trade/Orderbook/orderbook'
 import Table from '~/components/ui/Market/Trade/Table/table'
 import useMarketsQuery from '~/hooks/useMarkets.query'
 import useUpbit from '~/hooks/useUpbit.websocket'
@@ -26,7 +27,9 @@ function Exchange() {
 
  return (
   <div className="grid grid-cols-[990px_400px] w-[1410px] m-auto gap-5 mt-4">
-   <div className="bg-slate-500 h-[1500px]">test</div>
+   <div className="bg-white h-[1500px]">
+    <Orderbook />
+   </div>
    <Table />
   </div>
  )
