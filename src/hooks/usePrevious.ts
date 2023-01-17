@@ -7,7 +7,7 @@ function usePrevious<T>(initialValue: T) {
   value.current = initialValue
  }, [initialValue])
 
- return value.current
+ return value.current as T
 }
 
 export default usePrevious

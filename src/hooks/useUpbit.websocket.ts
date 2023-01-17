@@ -77,7 +77,7 @@ function useUpbit<T extends RequestType>(marketCodes: Market[], type: T) {
     buffer.current = updatedBuffer
     setSocketData(updatedBuffer)
    }
-  }, 10),
+  }, 400),
   [marketCodes],
  )
 

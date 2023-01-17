@@ -1,3 +1,6 @@
+import clsx from 'clsx'
+import type { Change } from '~/types/api/upbit/common'
+
 export const MarketUtils = {
  numberToHuman: function numberToHuman(volume: number | string) {
   const num = +volume
@@ -28,5 +31,12 @@ export const MarketUtils = {
  },
  getPricePretty: function getPricePretty(price: number) {
   return price < 100 ? price.toFixed(2).toLocaleString() : price.toLocaleString()
+ },
+ getChageColor: function getChageColor(prefix: string, change: Change, evenColor = 'transparent') {
+  return `${prefix}${clsx(
+   change === 'RISE' && '[#c84a31]',
+   change === 'FALL' && '[#1261c4]',
+   change === 'EVEN' && evenColor,
+  )}`
  },
 }
