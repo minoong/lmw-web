@@ -12,6 +12,7 @@ function Exchange() {
  const dispatch = useSetAtom(marketsAtom)
  const dispatchTicker = useSetAtom(updateCandlesWithTickers)
  const krwMarkets = useAtomValue(krwMarketsAtom)
+
  useMarketsQuery({
   staleTime: Infinity,
   suspense: true,

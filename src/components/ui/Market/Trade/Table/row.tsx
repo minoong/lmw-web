@@ -1,12 +1,11 @@
 /* eslint-disable camelcase */
-import clsx from 'clsx'
 import type { Atom } from 'jotai'
 import React, { useMemo } from 'react'
 import { NavLink, useNavigate, useNavigation } from 'react-router-dom'
 import { ReactComponent as Star } from '~/assets/svg/star_fill.svg'
 import Candle from '~/components/ui/Chart/candle'
 import Price from '~/components/ui/Market/Trade/Table/price'
-import usePrevious from '~/hooks/usePrevious'
+import useIsMounted from '~/hooks/useIsMounted'
 import type { tickersAboutMarketsAtom } from '~/stores/atoms/tickers'
 import { MarketUtils } from '~/utils/utils.market'
 
@@ -25,7 +24,7 @@ function Row(props: ExtractAtomValue<typeof tickersAboutMarketsAtom>) {
   signed_change_price,
   acc_trade_price_24h,
  } = props
- const previousChange = usePrevious(trade_price)
+ const isMounted = useIsMounted()
  const navigation = useNavigation()
  const navigate = useNavigate()
 
@@ -35,14 +34,9 @@ function Row(props: ExtractAtomValue<typeof tickersAboutMarketsAtom>) {
   return `${symbol}/${krw}`
  }, [market])
 
- const isRise = clsx({
-  'text-[#c84a31]': change === 'RISE',
-  'text-[#1261c4]': change === 'FALL',
- })
+ const currentChange = MarketUtils.getChageColor('text-', change, '[#333333]')
 
- const isPending = () => {
-  return navigation.state === 'loading'
- }
+ const isPending = () => navigation.state === 'loading'
 
  const handleSelectedMarket = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, market: string) => {
   e.stopPropagation()
@@ -87,15 +81,10 @@ function Row(props: ExtractAtomValue<typeof tickersAboutMarketsAtom>) {
     <div className="text-[6px] text-gray-500 font-semibold">{marketKrwSymbol}</div>
    </div>
    <div className="w-[88px]">
-    <Price
-     tradePrice={trade_price}
-     yesterdayChnage={change}
-     change={trade_price > (previousChange ?? 0) ? 'RISE' : trade_price < (previousChange ?? 0) ? 'FALL' : 'EVEN'}
-     isFirstRender={previousChange === undefined}
-    />
+    <Price tradePrice={trade_price} yesterdayChnage={change} isFirstRender={!isMounted()} />
    </div>
    <div className="w-[78px]">
-    <div className={`${isRise} text-[6px] font-semibold text-right`}>
+    <div className={`${currentChange} text-[6px] font-semibold text-right`}>
      <div>
       {signed_change_rate > 0 ? '+' : ''}
       {(signed_change_rate * 100).toFixed(2)}%
