@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getMarkets } from '~/apis/upbit/getMarkets'
-import { UniversalUseQueryOptions } from '~/types/react-query/universal'
+import type { UniversalUseQueryOptions } from '~/types/react-query/universal'
 
 type GetMarkets = typeof getMarkets
 

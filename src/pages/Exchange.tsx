@@ -1,5 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai'
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
+import Header from '~/components/ui/Market/Header/header'
 import { MinutesStockChart } from '~/components/ui/Market/StockChart/stockChart'
 import Orderbook from '~/components/ui/Market/Trade/Orderbook/orderbook'
 import Table from '~/components/ui/Market/Trade/Table/table'
@@ -30,6 +31,9 @@ function Exchange() {
  return (
   <div className="grid grid-cols-[990px_400px] w-[1410px] m-auto gap-5 mt-4">
    <div className="bg-white h-[1500px]">
+    <Suspense fallback={<div>loading</div>}>
+     <Header />
+    </Suspense>
     <div className="h-[500px]">
      <MinutesStockChart dateTimeFormat="%Y-%m-%d %H:%M" />
     </div>
