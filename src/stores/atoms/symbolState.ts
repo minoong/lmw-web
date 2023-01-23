@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import axios from 'axios'
 import { atom } from 'jotai'
 import type { CandleMinute, StockCandle } from '~/types/api/upbit/candle.api'

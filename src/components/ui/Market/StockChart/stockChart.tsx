@@ -60,7 +60,7 @@ class StockChart extends React.Component<StockChartProps> {
  }
 
  private readonly volumeColor = (data: StockCandle) => {
-  return data.close > data.open ? 'rgba(38, 166, 154, 0.3)' : 'rgba(239, 83, 80, 0.3)'
+  return data.close > data.open ? 'RGB(227, 164, 152)' : 'RGB(136, 176, 225)'
  }
 
  private readonly volumeSeries = (data: StockCandle) => {
@@ -68,7 +68,7 @@ class StockChart extends React.Component<StockChartProps> {
  }
 
  private readonly openCloseColor = (data: StockCandle) => {
-  return data.close > data.open ? '#26a69a' : '#ef5350'
+  return data.close > data.open ? '#c84a31' : '#1261c4'
  }
 
  public render() {
@@ -135,7 +135,7 @@ class StockChart extends React.Component<StockChartProps> {
     <Chart id={3} height={chartHeight} yExtents={this.candleChartExtents}>
      <XAxis showGridLines showTicks={false} showTickLabel={false} />
      <YAxis showGridLines tickFormat={this.pricesDisplayFormat} showTicks={false} />
-     <CandlestickSeries />
+     <CandlestickSeries fill={this.openCloseColor} wickStroke={this.openCloseColor} />
      <LineSeries yAccessor={ema26.accessor()} strokeStyle={ema26.stroke()} />
      <CurrentCoordinate yAccessor={ema26.accessor()} fillStyle={ema26.stroke()} />
      <LineSeries yAccessor={ema12.accessor()} strokeStyle={ema12.stroke()} />

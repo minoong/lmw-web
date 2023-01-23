@@ -3,7 +3,7 @@ import { atom } from 'jotai'
 import { marketsAtom } from '~/stores/atoms/markets'
 import type { Ticker } from '~/types/api/upbit/ticker.socket'
 import type { Market } from '~/types/api/upbit/market'
-import { candlesAtom } from '~/stores/atoms/symbolState'
+import { candlesAtom, symbolAtom } from '~/stores/atoms/symbolState'
 
 export const tickersAtom = atom<Ticker[]>([])
 
@@ -104,6 +104,43 @@ export const tickersAboutMarketsAtom = atom((get) => {
     acc_trade_price_24h,
    }),
   )
+  .sort((a, b) => b.signed_change_rate - a.signed_change_rate)
+})
+
+export const selectedCoinAtom = atom((get) => {
+ const [market] = get(marketsAtom).filter((v) => v.market === get(symbolAtom))
+ const [result] = get(tickersAtom)
+  .filter((ticker) => ticker.code === market.market)
+  .map((ticker) => ({ ...ticker, ...market }))
+  .map(
+   ({
+    market,
+    korean_name,
+    change,
+    opening_price,
+    trade_price,
+    high_price,
+    low_price,
+    signed_change_rate,
+    signed_change_price,
+    acc_trade_price_24h,
+    acc_trade_volume_24h,
+   }) => ({
+    market,
+    korean_name,
+    change,
+    opening_price,
+    trade_price,
+    high_price,
+    low_price,
+    signed_change_rate,
+    signed_change_price,
+    acc_trade_price_24h,
+    acc_trade_volume_24h,
+   }),
+  )
+
+ return result
 })
 
 export const getTickerBySymbolAtom = (symbol: string) =>

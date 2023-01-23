@@ -15,7 +15,7 @@ export type Ticker = {
  signed_change_rate: number
  trade_volume: number
  acc_trade_volume: string
- acc_trade_volume_24h: string
+ acc_trade_volume_24h: number
  acc_trade_price: number
  acc_trade_price_24h: number
  trade_date: string

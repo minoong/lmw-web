@@ -34,8 +34,8 @@ export const MarketUtils = {
  },
  getChageColor: function getChageColor(prefix: string, change: Change, evenColor = 'transparent') {
   return `${prefix}${clsx(
-   change === 'RISE' && '[#c84a31]',
-   change === 'FALL' && '[#1261c4]',
+   change === 'RISE' && 'trade-rise',
+   change === 'FALL' && 'trade-fall',
    change === 'EVEN' && evenColor,
   )}`
  },

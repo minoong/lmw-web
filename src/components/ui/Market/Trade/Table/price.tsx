@@ -11,7 +11,7 @@ interface Props {
 
 function Price(props: Props) {
  const { tradePrice, yesterdayChnage, isFirstRender } = props
- console.log(isFirstRender)
+
  const [currentChange, setCurrentChange] = useState<Change>('EVEN')
  const previousTradePrice = usePrevious(tradePrice)
 
