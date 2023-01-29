@@ -9,6 +9,7 @@ import useMarketsQuery from '~/hooks/useMarkets.query'
 import useUpbit from '~/hooks/useUpbit.websocket'
 import { krwMarketsAtom, marketsAtom } from '~/stores'
 import { updateCandlesWithTickers } from '~/stores/atoms/tickers'
+import Search from '~/components/ui/Market/Search/search'
 
 function Exchange() {
  const dispatch = useSetAtom(marketsAtom)
@@ -41,7 +42,10 @@ function Exchange() {
     <Orderbook />
     <HistoryTab />
    </div>
-   <Table />
+   <aside>
+    <Search />
+    <Table />
+   </aside>
   </div>
  )
 }
