@@ -48,7 +48,7 @@ function updateSocketData<T extends { code: string }>(originData: T[], newData: 
 }
 
 function updateQueueBuffer<T extends { code: string }>(buffer: T[], maxSize: number) {
- return [...buffer].slice(-maxSize)
+ return [...buffer].slice(-maxSize).reverse()
 }
 
 function useUpbit<T extends RequestType>(marketCodes: Market[], type: T) {

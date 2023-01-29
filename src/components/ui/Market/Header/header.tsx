@@ -19,7 +19,7 @@ function Header() {
  const change = coin ? MarketUtils.getChageColor('text-', coin.change, '[#333333]') : ''
 
  return (
-  <div className="flex flex-col p-2 gap-2 pb-10 border-b">
+  <div className="flex flex-col p-2 gap-2 border-b bg-white">
    {coin && (
     <>
      <div className="flex gap-3 items-center border-b pb-2">
@@ -60,11 +60,11 @@ function Header() {
          <span className="text-[11px] font-light text-[#999999] pl-1">{simpleSymbol}</span>
         </div>
        </div>
-       <div className="flex justify-between p-2 items-center border-b">
+       <div className="flex justify-between p-2 items-center">
         <div>저가</div>
         <div className="text-sm text-trade-fall font-semibold">{MarketUtils.getPricePretty(coin.low_price)}</div>
        </div>
-       <div className="flex justify-between p-2 items-center border-b">
+       <div className="flex justify-between p-2 items-center">
         <div>거래대금(24H)</div>
         <div className="text-xs">
          {MarketUtils.getPricePretty(coin.acc_trade_price_24h)}
