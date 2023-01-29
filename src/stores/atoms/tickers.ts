@@ -77,12 +77,13 @@ export const tickersAboutMarketsAtom = atom((get) => {
  const tickers = get(tickersAtom)
 
  return tickers
-  .filter((ticker) => markets.findIndex((market) => ticker.code === market.market))
+  .filter((ticker) => markets.findIndex((market) => ticker.code === market.market) > -1)
   .map((ticker) => ({ ...ticker, ...(markets.find((market) => ticker.code === market.market) as Market) }))
   .map(
    ({
     market,
     korean_name,
+    english_name,
     change,
     opening_price,
     trade_price,
@@ -94,6 +95,7 @@ export const tickersAboutMarketsAtom = atom((get) => {
    }) => ({
     market,
     korean_name,
+    english_name,
     change,
     opening_price,
     trade_price,

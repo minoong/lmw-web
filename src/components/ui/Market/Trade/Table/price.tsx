@@ -33,7 +33,7 @@ function Price(props: Props) {
   <div
    className={`${change} transition-all ease-in ${
     !isFirstRender ? highlight : ''
-   } text-xs h-10 flex justify-end pr-2 pt-1`}
+   } text-xs h-10 flex justify-end pr-2 pt-1 font-semibold`}
   >
    {MarketUtils.getPricePretty(tradePrice)}
   </div>
