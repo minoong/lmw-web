@@ -53,7 +53,7 @@ function Row(props: RowProps) {
  )
 
  return (
-  <div className="h-[700px]" id="coin-table">
+  <div className="coin-table h-[700px]">
    <table className="w-[490px]">
     <colgroup>
      <col width="42" />
@@ -67,7 +67,7 @@ function Row(props: RowProps) {
       const width = `${(ele.ask_size / maxSize) * 100}%`
       return (
        <tr key={`ask_${ele.ask_price}`} className="bg-[#EEF2FB] h-[45px] hover:bg-[#D2DFF3]">
-        <th className="border-white border">&nbsp;</th>
+        <th className="border-r-white border-t-white border-b-white border">&nbsp;</th>
         <th className="border-white border text-trade-even font-normal">
          <div className="relative w-full h-full text-right">
           <div className="p-1">{(+ele.ask_size.toFixed(3)).toLocaleString()}</div>

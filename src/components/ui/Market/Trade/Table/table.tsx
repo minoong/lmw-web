@@ -9,7 +9,7 @@ function Table() {
  const tickersAboutMarkets = useAtomValue(tickersAboutMarketsAtom)
 
  return (
-  <div className="h-[865px] sticky top-20" onScroll={(e) => setY(e.currentTarget.scrollTop)} id="coin-table">
+  <div className="coin-table h-[865px] sticky top-20" onScroll={(e) => setY(e.currentTarget.scrollTop)}>
    <VirtualScroll height={865} itemHeight={46} offsetY={y}>
     {tickersAboutMarkets.map((ticker) => (
      <Row key={ticker.market} {...ticker} />

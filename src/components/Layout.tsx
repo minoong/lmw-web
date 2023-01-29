@@ -6,7 +6,7 @@ function Layout() {
  return (
   <div className="flex flex-col min-h-screen w-full min-w-[1400px]">
    <Gnb />
-   <main className="grow min-h-[550px] px-4 pt-[64px]">
+   <main className="flex-auto min-h-[550px] px-4 pt-[64px]">
     <Outlet />
    </main>
    <footer>footer</footer>

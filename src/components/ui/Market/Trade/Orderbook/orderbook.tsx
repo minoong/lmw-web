@@ -3,7 +3,7 @@ import Table from '~/components/ui/Market/Trade/Orderbook/table'
 
 function Orderbook() {
  return (
-  <div>
+  <div className="bg-white">
    <Table />
   </div>
  )

@@ -110,6 +110,7 @@ export const TabsComponent = forwardRef<TabsRef, TabsProps>(
          [tabItemStyle.active.on]: index === activeTab,
          [tabItemStyle.active.off]: index !== activeTab && !tab.disabled,
         },
+        'w-1/2',
        )}
        disabled={tab.disabled}
        id={`${id}-tab-${index}`}

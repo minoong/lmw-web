@@ -21,20 +21,20 @@ li > a:hover > svg {
  transition: all ease 0.3s;
 }
 
-#coin-table {
+.coin-table {
  overflow: hidden;
  transition: all 1s;
 }
 
-#coin-table:hover {
+.coin-table:hover {
  overflow: overlay;
 }
 
-#coin-table::-webkit-scrollbar {
+.coin-table::-webkit-scrollbar {
  width: 0.5rem;
 }
 
-#coin-table::-webkit-scrollbar-thumb {
+.coin-table::-webkit-scrollbar-thumb {
  background-color: hsla(0, 0%, 77%, 0.49);
  border-radius: 100px;
 }
